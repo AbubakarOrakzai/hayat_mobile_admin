@@ -1,0 +1,8 @@
+.metric { padding: 18px; background: #fff; border: 1px solid var(--mist); border-radius: 16px; }
+.metric__label { font-size: 13px; color: var(--ink-soft); }
+.metric__value { margin-top: 4px; font-family: var(--font-display); font-size: 26px; font-weight: 800; line-height: 1.1; }
+.metric__hint { margin-top: 6px; font-size: 13px; color: var(--ink-soft); }
+.metric--good { background: var(--pine); border-color: var(--pine); color: var(--paper); }
+.metric--good .metric__label, .metric--good .metric__hint { color: rgba(243, 245, 241, 0.75); }
+.metric--warn { background: var(--tag); border-color: var(--tag); }
+.metric--warn .metric__label, .metric--warn .metric__hint { color: rgba(18, 38, 29, 0.75); }

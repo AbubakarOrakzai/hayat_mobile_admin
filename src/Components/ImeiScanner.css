@@ -1,0 +1,5 @@
+.scanner__row { display: flex; gap: 8px; flex-wrap: wrap; }
+.scanner__input { flex: 1; min-width: 200px; font-size: 18px; }
+.scanner__input--bad { border-color: var(--red); }
+.scanner__hint { display: flex; align-items: center; gap: 6px; margin-top: 6px; }
+.scanner__reader { margin-top: 12px; max-width: 420px; border-radius: 12px; overflow: hidden; background: var(--ink); }

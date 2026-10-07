@@ -1,0 +1,4 @@
+.pm-image { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.pm-image__preview { display: grid; place-items: center; width: 96px; height: 96px; border-radius: 12px; background: var(--mist); color: rgba(18, 38, 29, 0.3); overflow: hidden; }
+.pm-image__preview img { width: 100%; height: 100%; object-fit: cover; }
+.pm-image__remove { display: flex; margin-top: 8px; }

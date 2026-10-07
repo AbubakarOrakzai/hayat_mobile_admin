@@ -1,0 +1,1 @@
+export const SHOP = { name: 'Hayat Mobile Center' }

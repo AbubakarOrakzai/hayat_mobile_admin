@@ -1,0 +1,5 @@
+.badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.badge--paid, .badge--in_stock { background: rgba(29, 91, 63, 0.14); color: var(--pine); }
+.badge--pending { background: rgba(185, 28, 28, 0.12); color: var(--red); }
+.badge--partial { background: rgba(255, 210, 63, 0.4); color: #7a5b00; }
+.badge--sold { background: var(--mist); color: var(--ink-soft); }

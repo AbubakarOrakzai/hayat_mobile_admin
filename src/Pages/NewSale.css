@@ -1,0 +1,8 @@
+.sale-device { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--mist); }
+.sale-device__name { font-family: var(--font-display); font-size: 22px; font-weight: 800; }
+.sale-summary { margin-top: 20px; padding: 12px 16px; border-radius: 12px; background: var(--paper); }
+
+.invoice { max-width: 640px; }
+.invoice__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+.invoice__grid dt { font-size: 13px; color: var(--ink-soft); }
+.invoice__grid dd { margin: 0; font-weight: 600; }
