@@ -1,5 +1,5 @@
 import { FiMail } from 'react-icons/fi'
-import { FaLinkedin, FaGithub } from 'react-icons/fa'
+import { FaLinkedinIn, FaGithub } from 'react-icons/fa'
 import './Credit.css'
 
 const TEAM = [
@@ -19,30 +19,30 @@ const TEAM = [
   },
 ]
 
+const initials = (name) => name.split(' ').map((w) => w[0]).join('')
+
 // variant="dark" for dark backgrounds (customer footer), "light" for light pages (admin).
 export default function Credits({ variant = 'light' }) {
   return (
-    <details className={`credits credits--${variant}`}>
-      <summary className="credits__summary">
-        <span>
-          Designed and developed by <strong>Abubakar Orakzai</strong> &amp; <strong>Haseeb Khan</strong>
-        </span>
-        <span className="credits__more">Team profiles</span>
-      </summary>
+    <div className={`credits credits--${variant}`}>
+      <p className="credits__label">Designed and developed by</p>
 
-      <div className="credits__grid">
+      <ul className="credits__team">
         {TEAM.map((m) => (
-          <article key={m.email} className="credits__card">
-            <h3 className="credits__name">{m.name}</h3>
-            <p className="credits__role">{m.role}</p>
-            <ul className="credits__links">
-              <li><a href={`mailto:${m.email}`}><FiMail /> {m.email}</a></li>
-              <li><a href={m.linkedin} target="_blank" rel="noopener noreferrer"><FaLinkedin /> LinkedIn</a></li>
-              <li><a href={m.github} target="_blank" rel="noopener noreferrer"><FaGithub /> GitHub</a></li>
-            </ul>
-          </article>
+          <li key={m.email} className="credits__person">
+            <span className="credits__avatar" aria-hidden="true">{initials(m.name)}</span>
+            <span className="credits__who">
+              <span className="credits__name">{m.name}</span>
+              <span className="credits__role">{m.role}</span>
+            </span>
+            <span className="credits__links">
+              <a href={m.linkedin} target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label={`${m.name} on LinkedIn`}><FaLinkedinIn /></a>
+              <a href={m.github} target="_blank" rel="noopener noreferrer" title="GitHub" aria-label={`${m.name} on GitHub`}><FaGithub /></a>
+              <a href={`mailto:${m.email}`} title={m.email} aria-label={`Email ${m.name}`}><FiMail /></a>
+            </span>
+          </li>
         ))}
-      </div>
-    </details>
+      </ul>
+    </div>
   )
 }
