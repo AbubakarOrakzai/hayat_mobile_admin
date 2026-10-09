@@ -17,9 +17,19 @@ const TEAM = [
     linkedin: 'https://www.linkedin.com/in/haseeb-khan-347aa22b8/',
     github: 'https://github.com/Haseebi-khan',
   },
+  {
+    name: 'Muhammad Umer',
+    role: 'ML/AI Cloud Engineer',
+    linkedin: 'https://www.linkedin.com/in/muhammad-umer-3a9120213/',
+    github: 'https://github.com/umerkang66',
+  },
 ]
 
-const initials = (name) => name.split(' ').map((w) => w[0]).join('')
+// First and last initial, e.g. "Muhammad Umer" -> "MU"
+const initials = (name) => {
+  const words = name.split(' ')
+  return words[0][0] + (words.length > 1 ? words[words.length - 1][0] : '')
+}
 
 // variant="dark" for dark backgrounds (customer footer), "light" for light pages (admin).
 export default function Credits({ variant = 'light' }) {
@@ -29,16 +39,17 @@ export default function Credits({ variant = 'light' }) {
 
       <ul className="credits__team">
         {TEAM.map((m) => (
-          <li key={m.email} className="credits__person">
+          <li key={m.name} className="credits__person">
             <span className="credits__avatar" aria-hidden="true">{initials(m.name)}</span>
             <span className="credits__who">
               <span className="credits__name">{m.name}</span>
               <span className="credits__role">{m.role}</span>
             </span>
+            {/* a button only shows when that link is filled in */}
             <span className="credits__links">
-              <a href={m.linkedin} target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label={`${m.name} on LinkedIn`}><FaLinkedinIn /></a>
-              <a href={m.github} target="_blank" rel="noopener noreferrer" title="GitHub" aria-label={`${m.name} on GitHub`}><FaGithub /></a>
-              <a href={`mailto:${m.email}`} title={m.email} aria-label={`Email ${m.name}`}><FiMail /></a>
+              {m.linkedin && <a href={m.linkedin} target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label={`${m.name} on LinkedIn`}><FaLinkedinIn /></a>}
+              {m.github && <a href={m.github} target="_blank" rel="noopener noreferrer" title="GitHub" aria-label={`${m.name} on GitHub`}><FaGithub /></a>}
+              {m.email && <a href={`mailto:${m.email}`} title={m.email} aria-label={`Email ${m.name}`}><FiMail /></a>}
             </span>
           </li>
         ))}
