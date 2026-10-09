@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { supabase } from '../lib/supbase'
+import { supabase, supabaseConfigured } from '../lib/supbase'
 
 const AdminContext = createContext(null)
 export const useAdmin = () => useContext(AdminContext)
@@ -20,6 +20,9 @@ export default function AdminProvider({ children }) {
   }, [])
 
   const login = async (email, password) => {
+    if (!supabaseConfigured) {
+      throw new Error('Login is not configured: VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY are missing from this build.')
+    }
     const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) {
       throw new Error(error.message === 'Invalid login credentials' ? 'Wrong email or password.' : error.message)
