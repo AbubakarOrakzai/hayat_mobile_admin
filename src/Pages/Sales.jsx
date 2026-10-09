@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
-import StatusBadge from '../components/StatusBadge'
-import PaymentModal from '../components/PaymentModal'
-import MetricCard from '../components/MetricCard'
+import StatusBadge from '../Components/StatusBadge'
+import PaymentModal from '../Components/PaymentModal'
+import MetricCard from '../Components/MetricCard'
 import { getSales, recordPayment } from '../services/saleService'
 import { formatPrice, formatDate } from '../utils/format'
 

@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { FiPlus } from 'react-icons/fi'
-import StatusBadge from '../components/StatusBadge'
-import PaymentModal from '../components/PaymentModal'
-import MetricCard from '../components/MetricCard'
+import StatusBadge from '../Components/StatusBadge'
+import PaymentModal from '../Components/PaymentModal'
+import MetricCard from '../Components/MetricCard'
 import { getLoans, addLoan, recordRepayment } from '../services/loanService'
 import { formatPrice, formatDate } from '../utils/format'
 
