@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { FiPlus } from 'react-icons/fi'
-import StatusBadge from '../Components/StatusBadge'
+import StatusBadge from '../components/StatusBadge'
 import { getDevices, deleteDevice } from '../services/deviceService'
 import { formatPrice, formatDate } from '../utils/format'
 

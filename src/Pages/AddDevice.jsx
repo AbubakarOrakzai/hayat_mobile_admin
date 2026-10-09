@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
-import ImeiScanner from '../Components/ImeiScanner'
+import ImeiScanner from '../components/ImeiScanner'
 import { getProducts } from '../services/productService'
 import { addDevice } from '../services/deviceService'
 import { isValidImei } from '../utils/imei'

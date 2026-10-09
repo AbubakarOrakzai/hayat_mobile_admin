@@ -1,0 +1,8 @@
+/* keep the footer at the bottom, even on short pages */
+.layout__main { display: flex; flex-direction: column; }
+.layout__main > .content { flex: 1; width: 100%; }
+
+.admin-footer { padding: 20px 16px 28px; border-top: 1px solid var(--mist); }
+@media (min-width: 900px) { .admin-footer { padding: 20px 32px 28px; } }
+
+@media print { .admin-footer { display: none; } }

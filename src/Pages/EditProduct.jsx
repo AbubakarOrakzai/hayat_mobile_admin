@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import toast from 'react-hot-toast'
-import ProductManager from '../Components/ProductManager'
+import ProductManager from '../components/ProductManager'
 import { getProduct, updateProduct } from '../services/productService'
 
 export default function EditProduct() {
