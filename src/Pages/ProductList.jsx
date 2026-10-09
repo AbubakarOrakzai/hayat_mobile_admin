@@ -6,10 +6,16 @@ import { getProducts, deleteProduct } from '../services/productService'
 
 export default function ProductList() {
   const [products, setProducts] = useState(null)
+  const [loadError, setLoadError] = useState('')
   const [q, setQ] = useState('')
 
   const load = useCallback(async () => {
-    setProducts(await getProducts())
+    try {
+      setProducts(await getProducts())
+      setLoadError('')
+    } catch (err) {
+      setLoadError(err.message)
+    }
   }, [])
 
   useEffect(() => {
@@ -38,7 +44,7 @@ export default function ProductList() {
         <input className="input" placeholder="Search brand or model" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Search products" />
       </div>
 
-      {!products ? <p className="empty">Loading…</p> : list.length === 0 ? <p className="empty">No products found.</p> : (
+      {loadError ? <p className="empty"><span className="bad">{loadError}</span></p> : !products ? <p className="empty">Loading…</p> : list.length === 0 ? <p className="empty">No products found.</p> : (
         <div className="table-wrap">
           <table className="table">
             <thead>

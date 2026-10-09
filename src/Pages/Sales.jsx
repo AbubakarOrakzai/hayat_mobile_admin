@@ -11,12 +11,18 @@ const FILTERS = [['all', 'All'], ['pending', 'Pending'], ['partial', 'Part paid'
 
 export default function Sales() {
   const [sales, setSales] = useState(null)
+  const [loadError, setLoadError] = useState('')
   const [filter, setFilter] = useState('all')
   const [q, setQ] = useState('')
   const [paying, setPaying] = useState(null)
 
   const load = useCallback(async () => {
-    setSales(await getSales())
+    try {
+      setSales(await getSales())
+      setLoadError('')
+    } catch (err) {
+      setLoadError(err.message)
+    }
   }, [])
 
   useEffect(() => {
@@ -64,7 +70,7 @@ export default function Sales() {
         </div>
       </div>
 
-      {!sales ? <p className="empty">Loading…</p> : list.length === 0 ? <p className="empty">No bills found.</p> : (
+      {loadError ? <p className="empty"><span className="bad">{loadError}</span></p> : !sales ? <p className="empty">Loading…</p> : list.length === 0 ? <p className="empty">No bills found.</p> : (
         <div className="table-wrap">
           <table className="table">
             <thead>

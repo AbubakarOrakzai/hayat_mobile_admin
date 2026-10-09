@@ -9,11 +9,13 @@ import './Dashboard.css'
 
 export default function Dashboard() {
   const [s, setS] = useState(null)
+  const [loadError, setLoadError] = useState('')
 
   useEffect(() => {
-    getStats().then(setS)
+    getStats().then(setS).catch((err) => setLoadError(err.message))
   }, [])
 
+  if (loadError) return <p className="empty"><span className="bad">{loadError}</span></p>
   if (!s) return <p className="empty">Loading…</p>
 
   return (

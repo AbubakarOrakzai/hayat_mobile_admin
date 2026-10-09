@@ -18,7 +18,7 @@ export default function AddDevice() {
   const [added, setAdded] = useState([])
 
   useEffect(() => {
-    getProducts().then(setProducts)
+    getProducts().then(setProducts).catch((err) => toast.error(err.message))
   }, [])
 
   const save = async () => {

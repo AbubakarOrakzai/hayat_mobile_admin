@@ -26,7 +26,9 @@ export default function NewSale() {
   const paidNow = payType === 'paid' ? price : payType === 'pending' ? 0 : Number(partial) || 0
 
   const lookup = async (value) => {
-    const found = await getDeviceByImei(value)
+    let found
+    try { found = await getDeviceByImei(value) }
+    catch (err) { return toast.error(err.message) }
     if (!found) return toast.error('This IMEI is not in the system. Add it in Inventory first.')
     if (found.status === 'sold') return toast.error('This phone is already sold.')
     setDevice(found)

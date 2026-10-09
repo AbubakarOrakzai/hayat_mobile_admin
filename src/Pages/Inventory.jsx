@@ -10,11 +10,17 @@ const FILTERS = [['all', 'All'], ['in_stock', 'In stock'], ['sold', 'Sold']]
 
 export default function Inventory() {
   const [devices, setDevices] = useState(null)
+  const [loadError, setLoadError] = useState('')
   const [filter, setFilter] = useState('in_stock')
   const [q, setQ] = useState('')
 
   const load = useCallback(async () => {
-    setDevices(await getDevices())
+    try {
+      setDevices(await getDevices())
+      setLoadError('')
+    } catch (err) {
+      setLoadError(err.message)
+    }
   }, [])
 
   useEffect(() => {
@@ -56,7 +62,7 @@ export default function Inventory() {
         </div>
       </div>
 
-      {!devices ? <p className="empty">Loading…</p> : list.length === 0 ? <p className="empty">No devices found.</p> : (
+      {loadError ? <p className="empty"><span className="bad">{loadError}</span></p> : !devices ? <p className="empty">Loading…</p> : list.length === 0 ? <p className="empty">No devices found.</p> : (
         <div className="table-wrap">
           <table className="table">
             <thead>

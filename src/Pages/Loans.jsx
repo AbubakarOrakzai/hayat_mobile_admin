@@ -12,6 +12,7 @@ const EMPTY = { personName: '', phone: '', amount: '', dueDate: '', notes: '' }
 
 export default function Loans() {
   const [loans, setLoans] = useState(null)
+  const [loadError, setLoadError] = useState('')
   const [filter, setFilter] = useState('open')
   const [showForm, setShowForm] = useState(false)
   const [form, setForm] = useState(EMPTY)
@@ -19,7 +20,12 @@ export default function Loans() {
   const [paying, setPaying] = useState(null)
 
   const load = useCallback(async () => {
-    setLoans(await getLoans())
+    try {
+      setLoans(await getLoans())
+      setLoadError('')
+    } catch (err) {
+      setLoadError(err.message)
+    }
   }, [])
 
   useEffect(() => {
@@ -110,7 +116,7 @@ export default function Loans() {
         </div>
       </div>
 
-      {!loans ? <p className="empty">Loading…</p> : list.length === 0 ? <p className="empty">No loans here.</p> : (
+      {loadError ? <p className="empty"><span className="bad">{loadError}</span></p> : !loans ? <p className="empty">Loading…</p> : list.length === 0 ? <p className="empty">No loans here.</p> : (
         <div className="table-wrap">
           <table className="table">
             <thead>

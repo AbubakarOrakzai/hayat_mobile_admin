@@ -5,9 +5,15 @@ import { formatDateTime } from '../utils/format'
 
 export default function Messages() {
   const [messages, setMessages] = useState(null)
+  const [loadError, setLoadError] = useState('')
 
   const load = useCallback(async () => {
-    setMessages(await getMessages())
+    try {
+      setMessages(await getMessages())
+      setLoadError('')
+    } catch (err) {
+      setLoadError(err.message)
+    }
   }, [])
 
   useEffect(() => {
@@ -16,9 +22,8 @@ export default function Messages() {
 
   const remove = async (m) => {
     if (!window.confirm(`Delete the message from ${m.name}?`)) return
-    await deleteMessage(m._id)
-    toast.success('Message deleted')
-    load()
+    try { await deleteMessage(m._id); toast.success('Message deleted'); load() }
+    catch (err) { toast.error(err.message) }
   }
 
   return (
@@ -30,7 +35,7 @@ export default function Messages() {
         </div>
       </div>
 
-      {!messages ? <p className="empty">Loading…</p> : messages.length === 0 ? <p className="empty">No messages yet.</p> : (
+      {loadError ? <p className="empty"><span className="bad">{loadError}</span></p> : !messages ? <p className="empty">Loading…</p> : messages.length === 0 ? <p className="empty">No messages yet.</p> : (
         <div style={{ display: 'grid', gap: 12 }}>
           {messages.map((m) => (
             <article key={m._id} className="panel" style={{ margin: 0 }}>

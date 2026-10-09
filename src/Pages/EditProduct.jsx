@@ -8,9 +8,10 @@ export default function EditProduct() {
   const { id } = useParams()
   const navigate = useNavigate()
   const [product, setProduct] = useState(undefined) // undefined = loading, null = not found
+  const [loadError, setLoadError] = useState('')
 
   useEffect(() => {
-    getProduct(id).then(setProduct)
+    getProduct(id).then(setProduct).catch((err) => setLoadError(err.message))
   }, [id])
 
   const save = async (data) => {
@@ -19,6 +20,7 @@ export default function EditProduct() {
     navigate('/products')
   }
 
+  if (loadError) return <p className="empty"><span className="bad">{loadError}</span></p>
   if (product === undefined) return <p className="empty">Loading…</p>
   if (product === null) return <p className="empty">Product not found.</p>
 
